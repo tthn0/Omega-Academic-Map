@@ -2,7 +2,7 @@ import { type DataFetcher } from "../types/DataFetcher";
 import { type Degree } from "../types/Degree";
 import { type Requirement } from "../types/Requirement";
 
-export class LocalDataFetcher implements DataFetcher {
+export class FakeDataFetcher implements DataFetcher {
   getDegreeId = (): number | null => {
     const urlParams = new URLSearchParams(window.location.search);
     const degreeId = urlParams.get("Degree_ID");

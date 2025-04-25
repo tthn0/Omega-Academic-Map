@@ -46,12 +46,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref } from "vue";
+import { ref } from "vue";
 import type { Requirement } from "../types/Requirement";
 import { blockClass } from "../utils/blockClass";
 import CourseCell from "./CourseCell.vue";
 
-// import { defineProps, ref } from "vue";
+// import { ref } from "vue";
 // import type { Requirement } from "./types.Requirement.ts";
 // import { blockClass } from "./utils.blockClass.ts";
 // import CourseCell from "./components.CourseCell.vue";

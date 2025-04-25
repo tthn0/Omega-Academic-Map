@@ -1,7 +1,7 @@
 <template>
   <ONavbar />
   <DegreeMap
-    :dataFetcher="new LocalDataFetcher()"
+    :dataFetcher="new FakeDataFetcher()"
     :minYears="4"
     :minCellsPerSemester="5"
   />
@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import "../styles/fonts.css";
 import "../styles/reset.css";
-import { LocalDataFetcher } from "../utils/LocalDataFetcher";
+import { FakeDataFetcher } from "../utils/FakeDataFetcher";
 import DegreeMap from "./DegreeMap.vue";
 
 // import "./styles.fonts.css";
