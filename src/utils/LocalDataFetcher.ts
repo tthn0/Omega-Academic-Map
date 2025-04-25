@@ -1,4 +1,29 @@
+import { type DataFetcher } from "../types/DataFetcher";
+import { type Degree } from "../types/Degree";
 import { type Requirement } from "../types/Requirement";
+
+export class LocalDataFetcher implements DataFetcher {
+  getDegreeId = (): number | null => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const degreeId = urlParams.get("Degree_ID");
+    return degreeId ? parseInt(degreeId) : null;
+  };
+  getDegree = async (degreeId: number | null): Promise<Degree | undefined> => {
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    return degree.ID === degreeId ? degree : undefined;
+  };
+  getRequirements = async (degreeId: number | null): Promise<Requirement[]> => {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return degreeId === 10007 ? requirements : [];
+  };
+}
+
+const degree: Degree = {
+  ID: 10007,
+  Name: "Bachelor of Science in Computer Science",
+  College: "College of Engineering",
+  AcademicYears: "2023-2024",
+};
 
 const requirements: Requirement[] = [
   {
@@ -9,7 +34,7 @@ const requirements: Requirement[] = [
     SubjectIsActive: true,
     CourseNumber: "1111",
     CourseName: "Fundamentals of Chemistry Lab",
-    CourseDescription: "Basic laboratory techniques in chemistry.",
+    CourseDescription: "",
     CourseCreditHours: 1,
     CourseIsCore: false,
     CourseIsActive: true,
@@ -715,12 +740,3 @@ const requirements: Requirement[] = [
     SemesterIsActive: true,
   },
 ];
-
-export default requirements;
-
-export const getRequirements = async (
-  degreeId: string
-): Promise<Requirement[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 50));
-  return requirements;
-};

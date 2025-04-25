@@ -1,12 +1,26 @@
 <template>
   <ONavbar />
-  <DegreeMap :degreeId="degreeId" />
+  <DegreeMap
+    :dataFetcher="new LocalDataFetcher()"
+    :minYears="4"
+    :minCellsPerSemester="5"
+  />
 </template>
 
 <script setup lang="ts">
+import "../styles/fonts.css";
+import "../styles/reset.css";
+import { LocalDataFetcher } from "../utils/LocalDataFetcher";
 import DegreeMap from "./DegreeMap.vue";
 
-const degreeId = "10004";
+// import "./styles.fonts.css";
+// import "./styles.reset.css";
+// import { OmegaDataFetcher } from "./utils.OmegaDataFetcher.ts";
+// import DegreeMap from "./components.DegreeMap.vue";
 </script>
 
-<style module src="./App.css"></style>
+<style>
+:root {
+  font-family: "Open Sans", sans-serif;
+}
+</style>

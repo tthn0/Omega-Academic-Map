@@ -1,32 +1,55 @@
 <template>
+  <td v-if="!requirement">
+    <p>&nbsp;</p>
+  </td>
   <td
-    :class="{ [$style.clickable]: requirement?.CourseDescription }"
-    @click="showDescription(requirement?.CourseDescription)"
+    v-else
+    :class="requirement.CourseDescription && block('clickable')"
+    @click="showDescription(requirement.CourseDescription)"
   >
-    <p v-if="props.requirement">
-      {{ props.requirement.SubjectAbbreviation }}
-      {{ props.requirement.CourseNumber }}
+    <p>
+      {{ requirement.SubjectAbbreviation }}
+      {{ requirement.CourseNumber }}
     </p>
-    <p v-else>&nbsp;</p>
-    <p :class="{ [$style.core]: props.requirement?.CourseIsCore }">
-      {{ props.requirement?.CourseName }}
+    <p :class="requirement.CourseIsCore && block('core')">
+      {{ requirement.CourseName }}
     </p>
-    <p>{{ props.requirement?.CourseCreditHours }}</p>
+    <p>{{ requirement.CourseCreditHours }}</p>
   </td>
 </template>
 
 <script setup lang="ts">
-import { type Requirement } from "../types/Requirement";
+import type { Requirement } from "../types/Requirement";
+import { blockClass } from "../utils/blockClass";
 
-interface SingleCourseCellProps {
+// import type { Requirement } from "./types.Requirement.ts";
+// import { blockClass } from "./utils.blockClass.ts";
+
+defineProps<{
   requirement: Requirement | null;
-}
+}>();
 
-const props = defineProps<SingleCourseCellProps>();
-
+const block = blockClass("CourseCell");
 const showDescription = (description?: string) => {
-  if (description) alert(description);
+  description && alert(description);
 };
 </script>
 
-<style module src="./CourseCell.css"></style>
+<style scoped>
+.CourseCell.clickable {
+  cursor: pointer;
+
+  p {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover p {
+    transform: scale(1.05);
+  }
+}
+
+.CourseCell.core::after {
+  content: "*";
+  padding-left: 0.1rem;
+}
+</style>
