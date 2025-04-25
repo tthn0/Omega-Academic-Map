@@ -1,0 +1,57 @@
+.page {
+  padding: 2.25rem 4.5rem;
+  margin: 2rem auto;
+  width: clamp(56rem, 95%, 64rem);
+  background: white;
+  box-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.125);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 75rem;
+  gap: 1.5rem;
+}
+
+.degreeInfo {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: url("/Banner.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.degreeCollege {
+  color: white;
+  letter-spacing: 0.025rem;
+  font-size: 1.6rem;
+  font-weight: 425;
+  text-transform: uppercase;
+}
+
+.degreeName {
+  color: white;
+  letter-spacing: 0.025rem;
+  margin-top: -0.25rem;
+  font-size: 1.45rem;
+  font-weight: 425;
+}
+
+.degreeAcademicYears {
+  color: white;
+  letter-spacing: 0.025rem;
+  margin-top: -0.25rem;
+  font-weight: 375;
+  font-size: 1.25rem;
+}
+
+.yearRowContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

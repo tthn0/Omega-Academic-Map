@@ -1,0 +1,16 @@
+.clickable {
+  cursor: pointer;
+
+  p {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover p {
+    transform: scale(1.05);
+  }
+}
+
+.core::after {
+  content: "*";
+  padding-left: 0.1rem;
+}
