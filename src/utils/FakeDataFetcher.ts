@@ -10,11 +10,11 @@ export class FakeDataFetcher implements DataFetcher {
   };
   getDegree = async (degreeId: number | null): Promise<Degree | undefined> => {
     await new Promise((resolve) => setTimeout(resolve, 50));
-    return degree.ID === degreeId ? degree : undefined;
+    return degreeId === degree.ID ? degree : undefined;
   };
   getRequirements = async (degreeId: number | null): Promise<Requirement[]> => {
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return degreeId === 10007 ? requirements : [];
+    return degreeId === degree.ID ? requirements : [];
   };
 }
 

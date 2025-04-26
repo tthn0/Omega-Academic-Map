@@ -1,5 +1,5 @@
 <template>
-  <div :class="block('_container')">
+  <div :class="block('container')">
     <div :class="block('yearContainer')">
       <p :class="block('year')">Year {{ year }}</p>
     </div>
@@ -66,7 +66,7 @@ const props = defineProps<{
 
 const block = blockClass("YearRow");
 
-const getSortedRequirements = (semesterName: string) =>
+const getSortedRequirements = (semesterName: string): Requirement[] =>
   props.requirements
     .filter(
       (r: Requirement) =>
@@ -83,15 +83,15 @@ const zipLongest = (
   const coursesPerTerm = requirementsByTerm.map(
     (termCourses: Requirement[]) => termCourses.length
   );
-  const rowsToDisplay = Math.max(...coursesPerTerm, props.minCellsPerSemester);
-  return Array.from({ length: rowsToDisplay }, (_, i) =>
+  const rowPerSemester = Math.max(...coursesPerTerm, props.minCellsPerSemester);
+  return Array.from({ length: rowPerSemester }, (_, i) =>
     requirementsByTerm.map((termCourses: Requirement[]) =>
       i < termCourses.length ? termCourses[i] : null
     )
   );
 };
 
-const calculateSemesterHours = (courses: Requirement[]) =>
+const calculateSemesterHours = (courses: Requirement[]): number =>
   courses.reduce(
     (acc: number, course: Requirement) => acc + course.CourseCreditHours,
     0
@@ -110,11 +110,11 @@ transposedRequirements.value = zipLongest(fallCourses, springCourses);
 </script>
 
 <style scoped>
-.YearRow._container {
+.YearRow__container {
   display: grid;
   grid-template-columns: auto 1fr;
 
-  .YearRow.yearContainer {
+  .YearRow__yearContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,7 +123,7 @@ transposedRequirements.value = zipLongest(fallCourses, springCourses);
     width: 3em;
   }
 
-  .YearRow.year {
+  .YearRow__year {
     position: absolute;
     display: inline-block;
     white-space: nowrap;
@@ -183,7 +183,7 @@ transposedRequirements.value = zipLongest(fallCourses, springCourses);
     }
   }
 
-  .YearRow.topBorder {
+  .YearRow__topBorder {
     border-top: 1px solid black;
   }
 }

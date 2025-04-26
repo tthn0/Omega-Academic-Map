@@ -1,5 +1,3 @@
-export const blockClass =
-  (block: string) =>
-  (className: string = "") => {
-    return `${block} ${className}`;
-  };
+export const blockClass = (block: string) => (className: string) => {
+  return `${block}__${className}`;
+};

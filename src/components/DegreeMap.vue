@@ -1,6 +1,6 @@
 <template>
   <div :class="block('page')">
-    <main :class="block('_container')">
+    <main :class="block('container')">
       <section :class="block('degreeInfo')">
         <h1 :class="block('degreeCollege')">
           {{ degree?.College ?? "Degree Not Found" }}
@@ -20,7 +20,7 @@
         :isMaxYear="year === maxYear"
         :requirements="requirementsByYear(year)"
         :totalCreditHours="totalCreditHours"
-        :minCellsPerSemester="props.minCellsPerSemester"
+        :minCellsPerSemester="minCellsPerSemester"
       ></YearRow>
     </main>
   </div>
@@ -68,7 +68,7 @@ const maxYear = computed<number>(() => {
   );
 });
 
-const requirementsByYear = (year: number) => {
+const requirementsByYear = (year: number): Requirement[] => {
   return requirements.value.filter((r: Requirement) => r.Year === year);
 };
 
@@ -98,7 +98,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.DegreeMap.page {
+.DegreeMap__page {
   padding: 2.25rem 4.5rem;
   margin: 2rem auto;
   width: clamp(56rem, 95%, 64rem);
@@ -106,14 +106,14 @@ onUnmounted(() => {
   box-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.125);
 }
 
-.DegreeMap._container {
+.DegreeMap__container {
   display: flex;
   flex-direction: column;
   min-height: 75rem;
   gap: 1.5rem;
 }
 
-.DegreeMap.degreeInfo {
+.DegreeMap__degreeInfo {
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@ onUnmounted(() => {
   background-position: center;
 }
 
-.DegreeMap.degreeCollege {
+.DegreeMap__degreeCollege {
   color: white;
   letter-spacing: 0.025rem;
   font-size: 1.6rem;
@@ -133,7 +133,7 @@ onUnmounted(() => {
   text-transform: uppercase;
 }
 
-.DegreeMap.degreeName {
+.DegreeMap__degreeName {
   color: white;
   letter-spacing: 0.025rem;
   margin-top: -0.25rem;
@@ -141,7 +141,7 @@ onUnmounted(() => {
   font-weight: 425;
 }
 
-.DegreeMap.degreeAcademicYears {
+.DegreeMap__degreeAcademicYears {
   color: white;
   letter-spacing: 0.025rem;
   margin-top: -0.25rem;
@@ -149,7 +149,7 @@ onUnmounted(() => {
   font-size: 1.25rem;
 }
 
-.DegreeMap.yearRowContainer {
+.DegreeMap__yearRowContainer {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

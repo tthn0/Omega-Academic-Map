@@ -36,7 +36,7 @@ const showDescription = (description?: string) => {
 </script>
 
 <style scoped>
-.CourseCell.clickable {
+.CourseCell__clickable {
   cursor: pointer;
 
   p {
@@ -48,7 +48,7 @@ const showDescription = (description?: string) => {
   }
 }
 
-.CourseCell.core::after {
+.CourseCell__core::after {
   content: "*";
   padding-left: 0.1rem;
 }
